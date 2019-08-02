@@ -353,9 +353,9 @@ class CalendarCard extends LitElement {
   getLocationHtml(event) {
     if (!event.location || !event.locationAddress || !this.config.showLocationIcon)
       return html``;
-
+    const url = (event.location.startsWith('https://') || event.location.startsWith('http://')) ? event.location : "https://www.google.com/maps?daddr=" + event.location + "+" + event.locationAddress;
     return html`
-      <a href="https://www.google.com/maps?daddr=${event.location} ${event.locationAddress}" target="_blank" rel="nofollow noreferrer noopener"
+      <a href="${url}" target="_blank" rel="nofollow noreferrer noopener"
         title='open location'>
         <div>
           <ha-icon icon="mdi:map-marker"></ha-icon>&nbsp;
